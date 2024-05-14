@@ -67,7 +67,6 @@ pilha.inserir(3);
 
 
 console.log("elementos da pilha:");
-
 for(var i=0; i<pilha.size(); i++){
     console.log(pilha.elementos[i]);
 }

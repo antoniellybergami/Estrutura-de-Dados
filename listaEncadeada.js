@@ -79,7 +79,72 @@ class LinkedList {
         noAnterior.next = novoNo; //e o "noAnterior -> next" irá apontar para o novoNo que agr vem após ele
     }
 
+    //busca nó com um valor específico - retorna a posição 
+    buscaNo(data){
+        if (!this.head) return null;
 
+        let noAtual = this.head;
+        let i = 0;
+
+        while(noAtual != null){
+           if (noAtual.data == data){
+                return i;
+           } 
+           i++;
+           noAtual = noAtual.next;
+        }
+        return null;
+    }
+
+    //busca um nó pelo indice - retorna o valor na posição
+    buscaNoIndex(index){
+        if (!this.head) return null;
+
+        let i = 0;
+        let noAtual = this.head;
+
+        while(noAtual){
+            if (i == index) return noAtual;
+            else {
+                i++;
+                noAtual = noAtual.next;
+            }
+        }
+        return null;
+    }
+
+    //remove um nó com um index especifico
+    removeIndex(index){
+        let noAtual = this.head;
+        let noAuxiliar;
+        let contador = 0;
+
+        if(index === 0) this.head = this.head.next; //se o index for p o primerio elemento
+        else{
+            while(contador < index) {
+                noAuxiliar = noAtual;
+                noAtual = noAtual.next;
+                contador++;
+            }
+            noAuxiliar.next = noAtual.next;
+        }
+        this.size--;
+    }
+
+    //remove um nó com um valor especifico
+    removeNo(data){
+        let noAtual = this.head;
+        let noAuxiliar;
+
+        while(noAtual != null) { //percorrer a lista
+            if (noAtual.data != data){ //verifica se os valores são diferentes
+                noAuxiliar = noAtual;
+                noAtual = noAtual.next;
+            } else  noAtual = noAtual.next; //caso sejam iguais
+            noAuxiliar.next = noAtual;
+        }
+        this.size--;
+    }
 
     //esvaziar a lista
     limpar(){
@@ -119,14 +184,25 @@ class LinkedList {
         }
         return count;
     }
-    
-    
+
+    //imprimir elementos
+    imprime(){
+        let noAtual = this.head;
+        while(noAtual != null){
+            console.log(noAtual);
+            noAtual = noAtual.next;
+        }
+    }
+
+    //ordenar
 
 }
 
 const ll = new LinkedList();
 ll.insereComeco(100);
 ll.insereComeco(200);
+ll.insereComeco(500);
+ll.insereFinal(134);
 
 console.log(ll);
 
